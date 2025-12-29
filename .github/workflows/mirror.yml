@@ -18,14 +18,14 @@ jobs:
     timeout-minutes: 10
     if: vars.GITLAB_MIRROR_ENABLED == 'true'
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
         with:
           fetch-depth: 0
       - name: Add GitLab SSH host key
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -t ed25519,rsa gitlab.com >> ~/.ssh/known_hosts
-      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+      - uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.1
         with:
           ssh-private-key: ${{ secrets.GITLAB_SSH_KEY }}
       - name: Mirror to GitLab
@@ -41,14 +41,14 @@ jobs:
     timeout-minutes: 10
     if: vars.CODEBERG_MIRROR_ENABLED == 'true'
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
         with:
           fetch-depth: 0
       - name: Add Codeberg SSH host key
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -t ed25519,rsa codeberg.org >> ~/.ssh/known_hosts
-      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+      - uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.1
         with:
           ssh-private-key: ${{ secrets.CODEBERG_SSH_KEY }}
       - name: Mirror to Codeberg
@@ -64,14 +64,14 @@ jobs:
     timeout-minutes: 10
     if: vars.BITBUCKET_MIRROR_ENABLED == 'true'
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
         with:
           fetch-depth: 0
       - name: Add Bitbucket SSH host key
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -t ed25519,rsa bitbucket.org >> ~/.ssh/known_hosts
-      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+      - uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.1
         with:
           ssh-private-key: ${{ secrets.BITBUCKET_SSH_KEY }}
       - name: Mirror to Bitbucket
